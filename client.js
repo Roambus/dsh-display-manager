@@ -27,7 +27,7 @@
 //    就顶出可视区、既滑不动也点不到下面。
 //  - 颜色全部取宿主 --dsw-alias-* 令牌。
 window.__ModuleLoader__.load({
-  id: 'dsh-sidebar-fold',
+  id: 'dsh-display-manager',
   factory: (require) => {
     const React = require('react')
     const ReactDOM = require('react-dom')
@@ -35,15 +35,15 @@ window.__ModuleLoader__.load({
 
     /* ────────────────────────────── 常量 ────────────────────────────── */
 
-    const NS = 'sidebar-fold'
-    const STORE_KEY = 'dsh-sidebar-fold:state/v2'
-    const FOLD_STORAGE_KEY = 'dsh-sidebar-fold:collapsed'
+    const NS = 'display-manager'
+    const STORE_KEY = 'dsh-display-manager:state/v1'
+    const FOLD_STORAGE_KEY = 'dsh-display-manager:collapsed'
     /** 侧栏列容器窄于这个宽度时视为图标栏，不提供折叠条。 */
     const RAIL_MAX_WIDTH = 200
     /** 条目包装元素上的标记，样式表按它隐藏。 */
     const MARK = 'data-dshfold-id'
     /** 本插件自己的条目 id，不参与「隐藏显示」管理。 */
-    const SELF_ID = 'sidebar-fold'
+    const SELF_ID = 'display-manager'
 
     /**
      * 四个区域。
@@ -459,7 +459,7 @@ window.__ModuleLoader__.load({
      * 当布局项，React 只管容器内部。宿主重排自己的孩子时不会碰到我们，我们也不
      * 参与宿主的 diff。
      */
-    const SEAT_ATTR = 'data-dsh-sidebar-fold-seat'
+    const SEAT_ATTR = 'data-dsh-display-manager-seat'
 
     function ensureSeat() {
       // 槽位包装元素是 display:contents，它的父元素是「工作区」那一格，
@@ -508,7 +508,7 @@ window.__ModuleLoader__.load({
       React.useEffect(() => {
         if (!folded) return undefined
         const tag = document.createElement('style')
-        tag.setAttribute('data-plugin', 'dsh-sidebar-fold')
+        tag.setAttribute('data-plugin', 'dsh-display-manager')
         tag.textContent = '[data-slot="sidebar"] > div > nav { display: none !important; }'
         document.head.appendChild(tag)
         return () => tag.remove()
@@ -568,7 +568,7 @@ window.__ModuleLoader__.load({
       return ReactDOM.createPortal(h('button', {
         type: 'button',
         className: 'dshsf-grip',
-        'data-dsh-sidebar-fold-grip': '',
+        'data-dsh-display-manager-grip': '',
         'aria-expanded': !folded,
         'aria-label': label,
         title: folded ? t('grip.expandHint') : t('grip.collapseHint'),
@@ -810,7 +810,7 @@ window.__ModuleLoader__.load({
         try {
           markRegion(ctx, region, result)
         } catch (error) {
-          console.error('[sidebar-fold] marking', region.key, 'failed', error)
+          console.error('[display-manager] marking', region.key, 'failed', error)
         }
       }
 
@@ -1033,16 +1033,16 @@ window.__ModuleLoader__.load({
     /* ────────────────────────────── 装配 ────────────────────────────── */
 
     function apply(ctx) {
-      ctx.effect(() => ctx.locale.register(NS, { zh: DICT.zh, en: DICT.en }), 'sidebar-fold: dictionaries')
+      ctx.effect(() => ctx.locale.register(NS, { zh: DICT.zh, en: DICT.en }), 'display-manager: dictionaries')
       const t = ctx.locale.bind(NS)
 
       ctx.effect(() => {
         const tag = document.createElement('style')
-        tag.setAttribute('data-plugin', 'dsh-sidebar-fold')
+        tag.setAttribute('data-plugin', 'dsh-display-manager')
         tag.textContent = BASE_CSS
         document.head.appendChild(tag)
         return () => tag.remove()
-      }, 'sidebar-fold: base styles')
+      }, 'display-manager: base styles')
 
       const store = createStore(loadState())
 
@@ -1054,7 +1054,7 @@ window.__ModuleLoader__.load({
       }
       ctx.effect(() => {
         hiddenTag = document.createElement('style')
-        hiddenTag.setAttribute('data-plugin', 'dsh-sidebar-fold')
+        hiddenTag.setAttribute('data-plugin', 'dsh-display-manager')
         hiddenTag.setAttribute('data-dsh-fold-hidden', '')
         hiddenTag.textContent = hiddenCss(store.get())
         document.head.appendChild(hiddenTag)
@@ -1064,7 +1064,7 @@ window.__ModuleLoader__.load({
           hiddenTag?.remove()
           hiddenTag = null
         }
-      }, 'sidebar-fold: hidden styles')
+      }, 'display-manager: hidden styles')
 
       // 条目标记：DOM 变化、槽位增减、窗口尺寸变化都重新打标。
       ctx.effect(() => {
@@ -1098,12 +1098,12 @@ window.__ModuleLoader__.load({
           }
           window.removeEventListener('resize', schedule)
         }
-      }, 'sidebar-fold: entry markers')
+      }, 'display-manager: entry markers')
 
       // 折叠条。
       ctx.slots.inject('shell.overlay', () => ctx.slots.register({
         name: 'shell.overlay',
-        id: 'sidebar-fold',
+        id: 'display-manager',
         order: 0,
       }, () => h(FoldGrip, { t })))
 
@@ -1163,7 +1163,7 @@ window.__ModuleLoader__.load({
           disposeMain?.(); disposeMain = null
           disposeSettings?.(); disposeSettings = null
         }
-      }, 'sidebar-fold: own entries')
+      }, 'display-manager: own entries')
     }
 
     return {

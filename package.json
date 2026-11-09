@@ -1,18 +1,18 @@
 {
-  "name": "dsh-sidebar-fold",
-  "version": "2.3.0",
+  "name": "dsh-display-manager",
+  "version": "1.0.0",
   "private": false,
   "type": "module",
-  "description": "Collapse the sidebar panel list, and choose which plugin entries appear in the sidebar, the conversation header/footer, and Settings. Display only: it never enables or disables a plugin.",
+  "description": "Sidebar fold and display management: collapse the sidebar panel list, and choose which plugin entries appear in the sidebar, the conversation header/footer, tabs and Settings. Display only — it never enables or disables a plugin.",
   "author": "Roambus",
   "license": "MIT",
-  "homepage": "https://github.com/Roambus/dsh-sidebar-fold#readme",
+  "homepage": "https://github.com/Roambus/dsh-display-manager#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Roambus/dsh-sidebar-fold.git"
+    "url": "git+https://github.com/Roambus/dsh-display-manager.git"
   },
   "bugs": {
-    "url": "https://github.com/Roambus/dsh-sidebar-fold/issues"
+    "url": "https://github.com/Roambus/dsh-display-manager/issues"
   },
   "keywords": [
     "dsh",
@@ -20,7 +20,8 @@
     "deepseek-harness",
     "sidebar",
     "ui",
-    "display"
+    "display",
+    "fold"
   ],
   "exports": {
     ".": "./index.js",

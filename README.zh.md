@@ -1,4 +1,4 @@
-# dsh-sidebar-fold
+# dsh-display-manager
 
 侧栏折叠与显示管理：收起侧栏上方的面板入口，并集中管理左侧、对话窗口顶部/底部、标签栏和设置页分别显示哪些插件条目。只管「显示」，不启用或停用任何插件。
 
@@ -33,7 +33,7 @@ DSH 的 Web 外壳会把插件内容同时铺在四个地方：左侧面板列�
 ## 安装
 
 ```sh
-dsh plugin --profile web add Roambus/dsh-sidebar-fold
+dsh plugin --profile web add Roambus/dsh-display-manager
 ```
 
 ## 要求

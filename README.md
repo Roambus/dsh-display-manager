@@ -1,4 +1,4 @@
-# dsh-sidebar-fold
+# dsh-display-manager
 
 Collapse the sidebar panel list, and choose which plugin entries appear in the sidebar, the conversation header/footer, and Settings. Display only — it never enables or disables a plugin.
 
@@ -33,7 +33,7 @@ Some controls share a single container in the current layout and cannot be told 
 ## Install
 
 ```sh
-dsh plugin --profile web add Roambus/dsh-sidebar-fold
+dsh plugin --profile web add Roambus/dsh-display-manager
 ```
 
 ## Requirements
