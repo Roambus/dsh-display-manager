@@ -1,0 +1,51 @@
+{
+  "name": "dsh-sidebar-fold",
+  "version": "2.3.0",
+  "private": false,
+  "type": "module",
+  "description": "Collapse the sidebar panel list, and choose which plugin entries appear in the sidebar, the conversation header/footer, and Settings. Display only: it never enables or disables a plugin.",
+  "author": "Roambus",
+  "license": "MIT",
+  "homepage": "https://github.com/Roambus/dsh-sidebar-fold#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roambus/dsh-sidebar-fold.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Roambus/dsh-sidebar-fold/issues"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "sidebar",
+    "ui",
+    "display"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+# 侧边栏折叠：Host 半边只占位，界面由 package.json 的 dsh.client 声明的浏览器半边渲染。
+- insert:
+    - id: sidebar-fold
+      name: 'dsh-sidebar-fold'

@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Sidebar fold and display control",
+    "description": "Collapses the sidebar panel list to give the workspaces region its height, and manages which plugin entries appear in the sidebar, at the top and bottom of the conversation, and in Settings."
+  }
+}
